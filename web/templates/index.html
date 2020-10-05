@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>نَدرُس أونلاين</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="نَدرُس أونلاين">
+    <meta name="description" content="مبادرة لتسهيل التعلّم عبر الشبكة">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nadrus.online/">
+    <meta property="og:title" content="نَدرُس أونلاين">
+    <meta property="og:description" content="مبادرة لتسهيل التعلّم عبر الشبكة">
+    <meta name="image" property="og:image" content="images/link-preview.png">
+    <meta name="author" content="Hasan Abo-Shally">
+
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nadrus.online/">
+    <meta property="twitter:title" content="نَدرُس أونلاين">
+    <meta property="twitter:description" content="مبادرة لتسهيل التعلّم عبر الشبكة">
+    <meta property="twitter:image" content="images/link-preview.png">
+
+
+    <link rel="icon" type="image/png" href="../static/images/icon.png"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../static/style.css"/>
+    <!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
+
+
+    <script src="https://kit.fontawesome.com/351228f4bf.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="is-preload container">
+<!-- <div id="stars"></div> -->
+
+<header class="row">
+    <div class="col-md-12 center-center">
+        <img class="logo" src="../static/images/logo.png"/>
+    </div>
+
+</header>
+
+<section id="intro" class="row">
+
+    <div class="col-md-12 center-center">
+        <h1>نتكاتف معا، ننجح جميعا!</h1>
+        <p> نهدف في هذه المبادرة إلى إتاحة المجال للأفراد المتطوّعين بعرض المساعدة عن طريق تقديم دروس حيّة أو مسجّلة حول
+            المواضيع الدراسيّة المختلفة، وتسهيل وصول الطلّاب لهذه الدروس بشكل سلس. كل هذا في سبيل المساهمة في نجاح
+            طلابنا، خصوصا في ظل أزمة الكورونا الحاليّة.
+
+        </p>
+        <a class="btn btn-primary"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSfsrVKnAgTIYzvWt_emHgr85jmoI4-0T60uL--DNSCeJqIAfQ/viewform">انضم
+            كمتطوّع الآن</a>
+    </div>
+</section>
+
+
+<section id="tutors">
+
+    <ul class="row">
+        {% for mentor in data %}
+            <li class="col-md-4 tutor">
+            <div class="card">
+
+
+            <div class="card-body">
+                <p class="card-text">
+                <div class="image-wrapper">
+                    <img class="card-img-top" src="../static/images/avatar.png" alt="avatar">
+                </div>
+
+                <h2 class="card-title name">{{ mentor.first_name }} {{ mentor.last_name }}</h2>
+
+                <section>
+                    <ul class="topics">
+                        {% for subject in mentor.subjects %}
+                            <li><span class="badge rounded-pill bg-info">{{ subject }}</span></li>
+                        {% endfor %}
+                    </ul>
+
+                </section>
+
+                <section>
+                    <!-- <header>الصفوف</header> -->
+                    <ul class="grades">
+                        {% for grade in mentor.target_grades %}
+                            <li class="grade on"><span class="badge rounded-pill">{{ grade }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                </p>
+                <a href="https://wa.me/{{ mentor.phone }}" class="btn btn-block btn-whatsapp"><i class="fab fa-whatsapp"></i> تواصل</a>
+            </div>
+        {% endfor %}
+        </div>
+        </li>
+
+
+    </ul>
+
+</section>
+
+
+<footer class="center-center">
+
+
+    <small>نَدرُس أونلاين © 2020</small>
+
+</footer>
+</body>
+</html>
