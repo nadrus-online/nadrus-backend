@@ -1,3 +1,4 @@
+import re
 from typing import Union
 
 from app import app
@@ -28,6 +29,9 @@ all_subjects = [
 def get_tutors() -> Union[list, None]:
     sample_spreadsheet_id = config.MENTORS_SHEET_ID
     sample_range_name = 'A:O'
+    # used for padding missing columns
+    cols = re.search('([A-Z]):([A-Z])', sample_range_name)
+    rows_count = ord(cols[2]) - ord(cols[1]) + 1
 
     service = GoogleApi.get_service()
     result = service.spreadsheets().values().get(spreadsheetId=sample_spreadsheet_id,
@@ -37,6 +41,7 @@ def get_tutors() -> Union[list, None]:
         return None
     # remove header column
     values.pop(0)
+    values = list(map(lambda v: v if len(v) == rows_count else v + [''] * (rows_count - len(v)), values))
     return [Tutor(value[1], value[2], value[3], "+972" + str(value[4])[1:], _get_id_to_subject_list(value[5]),
                   value[6].split(','), value[7], value[8], value[9], value[10], value[11], value[12].split(','),
                   value[13], value[14])
