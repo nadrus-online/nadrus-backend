@@ -12,6 +12,10 @@ service = None
 class GoogleApi:
     @staticmethod
     def get_service():
+        """Constructs a resource to work with the sheets API. If the resource already exists, return the existing one.
+
+        :return: A service for interacting with the sheets API.
+        """
         global service
         if service:
             logger.info('getting existing Google Sheets service')

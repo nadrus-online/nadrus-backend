@@ -1,5 +1,4 @@
 import re
-from typing import Union
 
 from app import app
 from entities.tutor import Tutor
@@ -26,7 +25,13 @@ all_subjects = [
 ]
 
 
-def get_tutors() -> Union[list, None]:
+def get_tutors() -> list:
+    """Returns a list of objects holding all tutors.
+    Note: If the Google form changes, the existing rows WILL NOT be updated, so their row (represented by a list) will
+    have less elements. In order to have a list with a fixed size, we pad such results with the empty string.
+
+    :return: List of tutors.
+    """
     sample_spreadsheet_id = config.MENTORS_SHEET_ID
     sample_range_name = 'A:O'
     # used for padding missing columns
@@ -38,7 +43,8 @@ def get_tutors() -> Union[list, None]:
                                                  range=sample_range_name).execute()
     values = result.get('values', [])
     if not values:
-        return None
+        logger.info('got an empty list of rows for document %s', config.MENTORS_SHEET_ID)
+        return []
     # remove header column
     values.pop(0)
     values = list(map(lambda v: v if len(v) == rows_count else v + [''] * (rows_count - len(v)), values))
@@ -49,10 +55,12 @@ def get_tutors() -> Union[list, None]:
 
 
 def get_subjects() -> list:
+    """Urgh... did you really expect to see documentation here?
+    """
     return all_subjects
 
 
-def _get_id_to_subject_list(subjects):
+def _get_id_to_subject_list(subjects) -> list:
     """Returns a list of objects. Each object has subject's name, mapped by its ID.
 
     :param subjects: List of subjects (each is a coma-separated string).
