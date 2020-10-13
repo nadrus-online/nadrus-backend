@@ -49,7 +49,7 @@ def get_tutors() -> list:
     values.pop(0)
     values = list(map(lambda v: v if len(v) == rows_count else v + [''] * (rows_count - len(v)), values))
     return [Tutor(value[1], value[2], value[3], "+972" + str(value[4])[1:], _get_id_to_subject_list(value[5]),
-                  value[6].split(','), value[7], value[8], value[9], value[10], value[11], value[12],
+                  value[6].split(','), value[7].split(','), value[8], value[9], value[10], value[11], value[12],
                   value[13].split(','), value[14], value[15], value[16])
             for value in values]
 
