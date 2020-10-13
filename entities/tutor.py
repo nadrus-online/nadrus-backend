@@ -8,8 +8,10 @@ class Tutor:
     email: str
     phone: str
     subjects: list
+    target_ages: list
     target_grades: list
     motivation: str
+    sora_tarefeya: str
     picture: str
     zoom_link: str
     notes: str

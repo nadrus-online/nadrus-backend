@@ -31,8 +31,8 @@ class DevConfig(BaseConfig):
 
     def __init__(self):
         super().__init__()
-        self.MENTORS_SHEET_ID = '1TU7aP-uo630cE7vRlhPCRsov3pMUwxODp2eCuTGhsHo'
-        self.SHEET_API_KEY = '<key>'
+        self.MENTORS_SHEET_ID = '1VazTn6FiN2R8LshpXjbf1tNnC_-1kmCSKzSUux8IFuQ'
+        self.SHEET_API_KEY = '<key>>'
 
 
 class ConfigLoader:
